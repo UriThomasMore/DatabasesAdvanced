@@ -5,12 +5,14 @@ import schedule
 import time
 from csv import writer
 
+# functie om hash-gegevens aan een overzichtslijst toe te voegen
 def addhash(hashelement,overviewlist):
     for index, item in enumerate(hashelement):
         overviewlist.append([])
         overviewlist[index].append(item.getText())
     return overviewlist
 
+# functie om timestamp, BTC en USD aan overzichtslijst toe te voegen
 def addelements(elements,overviewlist): 
     index=0
     i=0
@@ -21,6 +23,7 @@ def addelements(elements,overviewlist):
             index+=1
             i=0
 
+# functie waarmee een pandas dataframe wordt aangemaakt te maken en deze toe te voegen aan een csv-file
 def createdataframe(overviewlist): 
     df= pd.DataFrame(overviewlist, columns =['Hash', 'Timestamp', 'BTC', 'USD']) 
     df['USD'] = df['USD'].str.replace('$', '',regex = True)
@@ -29,67 +32,62 @@ def createdataframe(overviewlist):
     df.to_csv('test.csv',mode ='a',header = False, index =False)   
     return  df
 
-def savedataframetocsv(timestamp,df): 
-    df.to_csv(f'/home/udhaesel/Desktop/Dataframe/file{str(timestamp)}.csv', header = True,index=True)
-
-def updatecurrentoverview(newtimestamp):
+# functie om na te gaan of er gegevens kunnen weggeschreven worden naar de logfile 'timestamp'
+def checkcurrentoverview(newtimestamp):
      
-     col_names =['Hash', 'Timestamp', 'BTC', 'USD']
-   
-     current_overview = pd.read_csv('test.csv',names=col_names)     
+     #Aanmaken nieuw pandas dataframe op basis van bewaarde overzichtslijst
+     col_names =['Hash', 'Timestamp', 'BTC', 'USD']   
+     current_overview = pd.read_csv('test.csv',names=col_names)
+     #We selecteren de eerste aanwezige timestamp    
      currenttimestamp=current_overview.iloc[1]['Timestamp']      
      
+     #We vergelijken deze eerste aanwezige timestamp met de eerste aanwezige timestamp van de laatste scrape die we uitgevoerd hebben.
+     #Zijn deze niet gelijk dan schrijven we de hoogste score van bitcoins met dezelfde datum als de eerste aanwezige timestamp weg naar de logfile. 
      if newtimestamp != currenttimestamp:               
+          #Aanmaken van nieuw dataframe en ordenene op basis van hoogste dollar-waarde
           rslt_df = current_overview.loc[current_overview['Timestamp']==currenttimestamp] 
           rslt_df =rslt_df.sort_values(by='USD', ascending=False)    
                   
           timestampresult =rslt_df.values.tolist()
           timestampstring = f"Timestamp: {timestampresult[0][1]} - Hash: { timestampresult [0][0]} - BTC : {timestampresult [0][2]} - USD: {timestampresult [0][3]}"          
 
-          f= open("printedtimestamps.txt","w+")
-          f.close()
-          a_file = open("printedtimestamps.txt", "r")
-          overviewtimestamps = []
-          for line in a_file:                
-                overviewtimestamps.append(line)
-                   
-          if timestampresult[0][1] not in overviewtimestamps:
-               with open('timestamps.txt', 'a') as f:
-                    f.write('\n'+timestampstring )          
-                    f.close()
-               with open('printedtimestamps.txt', 'a') as f:
-                    f.write(timestampresult[0][1])
-                    f.close()
-               print("Saved to timesamp")
-          
+          with open('timestamps.txt', 'a') as f:
+              f.write('\n'+timestampstring )
+              f.close()
+          print("Saved to timestamp")        
+                    
+          #Verwijderen van alle gegevens uit het dataframe met een gelijke timestamp van degene die we juist naar het logfile hebben weggeschreven en updaten van csv-file. 
           newcurrentoverview =current_overview[current_overview['Timestamp'] != currenttimestamp]     
-          newcurrentoverview.to_csv('test.csv',mode ='w',header = False,index =False)
-          savedataframetocsv(newcurrentoverview.iloc[1]['Timestamp'],newcurrentoverview)
+          newcurrentoverview.to_csv('test.csv',mode ='w',header = False,index =False)          
           
      else: 
           print("Scraping")
      
 
-def scraper():    
+#functie om scrapes uit te voeren en selecties te maken die kunnen weggeschreven worden naar logfile. 
+def scraper():  
+    
+    #Scrapen van website voor hash, timestamp, BTC & USD
     url = 'https://www.blockchain.com/btc/unconfirmed-transactions'
     r = requests.get(url)
     soup = BeautifulSoup(r.text,"html.parser")
     elements = soup.find_all(class_ = 'sc-1ryi78w-0 cILyoi sc-16b9dsl-1 ZwupP u3ufsr-0 eQTRKC')
     hashelement = soup.find_all(class_ = 'sc-1r996ns-0 fLwyDF sc-1tbyx6t-1 kCGMTY iklhnl-0 eEewhk d53qjk-0 ctEFcK')
     
+    #Opstellen van overzichtslijst
     overviewlist = []
     addhash(hashelement,overviewlist)    
     addelements(elements, overviewlist)
-    new_timestamp = overviewlist[0][1]
-     
+    new_timestamp = overviewlist[0][1]    
         
-    df_result= createdataframe(overviewlist)    
-    updatecurrentoverview(new_timestamp)
-    
+    createdataframe(overviewlist)    
+    checkcurrentoverview(new_timestamp)
     
 
-schedule.every(15).seconds.do(scraper)
+#Starten van script.  
+print('Scraping has started.You will have to wait one minute for anything happens')
+schedule.every(60).seconds.do(scraper)
 
 while True: 
     schedule.run_pending()
-    time.sleep(15)
+    time.sleep(60)
