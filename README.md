@@ -37,14 +37,14 @@ Opdracht 2
 
 * Installeren van mongoDB op Linux
   Commands: 
-    wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
-    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-    sudo apt-get update
-    sudo apt-get install -y mongodb-org
+    * wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+    * echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+    * sudo apt-get update
+    * sudo apt-get install -y mongodb-org
     
  * Opmaken van bashscript mongoDB om een instantie van de mongoDB server op te starten met de volgende commands
-    sudo systemctl start mongod
-    sudo systemctl enable mongod
+    * sudo systemctl start mongod
+    * sudo systemctl enable mongod
     
  * Aanpassen van script Scraper zodat de bekomen timestamps worden opgeslagen in de mongoDB-database:
     ![image](https://user-images.githubusercontent.com/91833234/137693668-3d8dd5a9-d8d9-45b8-847e-1df106445434.png)
