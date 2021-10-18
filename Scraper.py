@@ -4,6 +4,9 @@ import pandas as pd
 import schedule
 import time
 from csv import writer
+import pymongo
+import pprint
+from pymongo import MongoClient
 
 # functie om hash-gegevens aan een overzichtslijst toe te voegen
 def addhash(hashelement,overviewlist):
@@ -49,12 +52,20 @@ def checkcurrentoverview(newtimestamp):
           rslt_df =rslt_df.sort_values(by='USD', ascending=False)    
                   
           timestampresult =rslt_df.values.tolist()
-          timestampstring = f"Timestamp: {timestampresult[0][1]} - Hash: { timestampresult [0][0]} - BTC : {timestampresult [0][2]} - USD: {timestampresult [0][3]}"          
+          timestampstring = f"Timestamp: {timestampresult[0][1]} - Hash: { timestampresult [0][0]} - BTC : {timestampresult [0][2]} - 'USD: {timestampresult [0][3]}'"          
 
           with open('timestamps.txt', 'a') as f:
               f.write('\n'+timestampstring )
               f.close()
-          print("Saved to timestamp")        
+          print("Saved to timestamp")
+
+          #Timestamp toevoegen aan Database
+          client = MongoClient()
+          db = client.Blockchain
+          timestamp = {"Timestamp": timestampresult[0][1],"Hash":timestampresult [0][0], "BTC": timestampresult [0][2],"USD": timestampresult [0][3]}
+          timest = db.Timestamps
+          timest.insert_one(timestamp)
+          print("Saved in mongoDB")
                     
           #Verwijderen van alle gegevens uit het dataframe met een gelijke timestamp van degene die we juist naar het logfile hebben weggeschreven en updaten van csv-file. 
           newcurrentoverview =current_overview[current_overview['Timestamp'] != currenttimestamp]     
@@ -84,10 +95,10 @@ def scraper():
     checkcurrentoverview(new_timestamp)
     
 
-#Starten van script.  
+'''Starten van script.  
 print('Scraping has started.You will have to wait one minute for anything happens')
 schedule.every(60).seconds.do(scraper)
 
 while True: 
     schedule.run_pending()
-    time.sleep(60)
+    time.sleep(60)'''
