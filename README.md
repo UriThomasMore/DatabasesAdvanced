@@ -63,6 +63,20 @@ Opdracht 3
     * cd redis-stable
     * make
 
+* Aanpassen van script zodat resultaat voor 45 seconden cache wordt geplaatst in Redis en dan wordt overgeschreven naar mongoDB
+   
+  ![image](https://user-images.githubusercontent.com/91833234/141132757-5756695a-ecee-4ea5-9dad-6fa5322fdea7.png)
+
+* Resultaat in Redis: 
+
+  ![image](https://user-images.githubusercontent.com/91833234/141133037-98b7d0c5-7a49-4349-b7b5-10e496d999fc.png)
+
+
+* Resultaat in mongoDB
+
+  ![image](https://user-images.githubusercontent.com/91833234/141133145-a2feb324-4c1d-40a6-893f-52d751158e88.png)
+
+  
 
 
 
