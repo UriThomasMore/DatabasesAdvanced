@@ -54,4 +54,16 @@ Opdracht 2
   * Aanmaken van timer-script om elke minuut de website te scrapen: 
      ![image](https://user-images.githubusercontent.com/91833234/137693895-c8ef2f4c-2b03-437b-b5e1-4bc5d091e05b.png)
 
+Opdracht 3
+
+* Installeren van Redis op Linux
+  Commands: 
+    * wget http://download.redis.io/redis-stable.tar.gz
+    * tar xvzf redis-stable.tar.gz
+    * cd redis-stable
+    * make
+
+
+
+
 
