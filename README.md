@@ -74,7 +74,8 @@ Opdracht 3
 
 * Resultaat in mongoDB
 
-  ![image](https://user-images.githubusercontent.com/91833234/141133145-a2feb324-4c1d-40a6-893f-52d751158e88.png)
+  ![image](https://user-images.githubusercontent.com/91833234/141133369-f9076062-6347-4103-a3b2-e7ed6bdc203d.png)
+
 
   
 
