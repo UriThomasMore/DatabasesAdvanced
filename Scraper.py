@@ -3,10 +3,8 @@ import requests
 import pandas as pd
 import schedule
 import time
-from csv import writer
-import pymongo
-import pprint
 from pymongo import MongoClient
+import redis
 
 # functie om hash-gegevens aan een overzichtslijst toe te voegen
 def addhash(hashelement,overviewlist):
@@ -26,7 +24,7 @@ def addelements(elements,overviewlist):
             index+=1
             i=0
 
-# functie waarmee een pandas dataframe wordt aangemaakt te maken en deze toe te voegen aan een csv-file
+# functie waarmee een pandas dataframe wordt aangemaakt om de binnenkomende waarden toe te voegen aan een csv-file
 def createdataframe(overviewlist): 
     df= pd.DataFrame(overviewlist, columns =['Hash', 'Timestamp', 'BTC', 'USD']) 
     df['USD'] = df['USD'].str.replace('$', '',regex = True)
@@ -47,22 +45,29 @@ def checkcurrentoverview(newtimestamp):
      #We vergelijken deze eerste aanwezige timestamp met de eerste aanwezige timestamp van de laatste scrape die we uitgevoerd hebben.
      #Zijn deze niet gelijk dan schrijven we de hoogste score van bitcoins met dezelfde datum als de eerste aanwezige timestamp weg naar de logfile. 
      if newtimestamp != currenttimestamp:               
-          #Aanmaken van nieuw dataframe en ordenene op basis van hoogste dollar-waarde
+          #Aanmaken van nieuw dataframe op basis van datum currenttimestamp en ordenen op basis van hoogste dollar-waarde
           rslt_df = current_overview.loc[current_overview['Timestamp']==currenttimestamp] 
           rslt_df =rslt_df.sort_values(by='USD', ascending=False)    
                   
           timestampresult =rslt_df.values.tolist()
           timestampstring = f"Timestamp: {timestampresult[0][1]} - Hash: { timestampresult [0][0]} - BTC : {timestampresult [0][2]} - 'USD: {timestampresult [0][3]}'"          
 
-          with open('timestamps.txt', 'a') as f:
+          '''with open('timestamps.txt', 'a') as f:
               f.write('\n'+timestampstring )
               f.close()
-          print("Saved to timestamp")
+          print("Saved to timestamp")'''
 
-          #Timestamp toevoegen aan Database
+          #Timestamp toevoegen aan Redis-cache
+          redisStart = redis.Redis()
+          redisStart.set("Highest",timestampstring, ex=45)
+          timestampRedis=redisStart.get('Highest').decode("utf-8")          
+          listmongodb= timestampRedis.split('-')       
+          
+          
+          #Timestamp toevoegen aan MongoDBDatabase vanuit Redis-cache
           client = MongoClient()
           db = client.Blockchain
-          timestamp = {"Timestamp": timestampresult[0][1],"Hash":timestampresult [0][0], "BTC": timestampresult [0][2],"USD": timestampresult [0][3]}
+          timestamp = {"Timestamp": listmongodb[0].split(':',1)[1],"Hash":listmongodb[1].split(':')[1], "BTC": listmongodb[2].split(':')[1],"USD": listmongodb[3].split(':')[1]}
           timest = db.Timestamps
           timest.insert_one(timestamp)
           print("Saved in mongoDB")
