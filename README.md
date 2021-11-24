@@ -101,8 +101,9 @@ Opdracht 4
       ![image](https://user-images.githubusercontent.com/91833234/143299217-64e4301c-3209-4f08-a03d-6e87b07f25a8.png)
       mongoDB:       
       ![image](https://user-images.githubusercontent.com/91833234/143299419-8c20bd9b-08f5-42fb-9e85-8728f953b762.png)      
-      en:
-      ![image](https://user-images.githubusercontent.com/91833234/143299522-08120bae-10fd-41d3-b5cc-dc76440bad7c.png)
+      ![image](https://user-images.githubusercontent.com/91833234/143299793-bde642ea-32ea-454d-8c2f-d8a43c9ba815.png)
+
+      
 
       
      
