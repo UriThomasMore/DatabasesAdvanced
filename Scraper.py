@@ -57,15 +57,15 @@ def checkcurrentoverview(newtimestamp):
               f.close()
           print("Saved to timestamp")'''
 
-          #Timestamp toevoegen aan Redis-cache
-          redisStart = redis.Redis()
+          #Timestamp toevoegen aan Redis-cache in container
+          redisStart = redis.Redis(host='0.0.0.0',port='6379')
           redisStart.set("Highest",timestampstring, ex=45)
           timestampRedis=redisStart.get('Highest').decode("utf-8")          
           listmongodb= timestampRedis.split('-')       
           
           
-          #Timestamp toevoegen aan MongoDBDatabase vanuit Redis-cache
-          client = MongoClient()
+          #Timestamp toevoegen aan MongoDBDatabase in container vanuit Redis-cache
+          client = MongoClient("mongodb://localhost:27017/")
           db = client.Blockchain
           timestamp = {"Timestamp": listmongodb[0].split(':',1)[1],"Hash":listmongodb[1].split(':')[1], "BTC": listmongodb[2].split(':')[1],"USD": listmongodb[3].split(':')[1]}
           timest = db.Timestamps
