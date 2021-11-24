@@ -54,4 +54,65 @@ Opdracht 2
   * Aanmaken van timer-script om elke minuut de website te scrapen: 
      ![image](https://user-images.githubusercontent.com/91833234/137693895-c8ef2f4c-2b03-437b-b5e1-4bc5d091e05b.png)
 
+Opdracht 3
+
+* Installeren van Redis op Linux
+  Commands: 
+    * wget http://download.redis.io/redis-stable.tar.gz
+    * tar xvzf redis-stable.tar.gz
+    * cd redis-stable
+    * make
+
+* Aanpassen van script zodat resultaat voor 45 seconden in cache wordt geplaatst in Redis en dan wordt overgeschreven naar mongoDB
+   
+  ![image](https://user-images.githubusercontent.com/91833234/141132757-5756695a-ecee-4ea5-9dad-6fa5322fdea7.png)
+
+* Resultaat in Redis: 
+
+  ![image](https://user-images.githubusercontent.com/91833234/141133037-98b7d0c5-7a49-4349-b7b5-10e496d999fc.png)
+
+
+* Resultaat in mongoDB
+
+  ![image](https://user-images.githubusercontent.com/91833234/141133369-f9076062-6347-4103-a3b2-e7ed6bdc203d.png)
+
+Opdracht 4
+
+* Installeren van Docker op Ubuntu: https://docs.docker.com/engine/install/ubuntu/ 
+
+* Installeren van Image mongoDB en aanmaken container 
+     Commands: 
+        * docker pull mongo
+        * docker run --name mongodb -d -p 27017:27017 mongo:latest
+
+* Installeren van Image Redis en aanmaken container: 
+      Commands: 
+        * docker pull redis
+        * docker run --name redisdb5 -d -p 6379:6379 redis
+
+* Aanpassen van script zodat er wordt gebruik gemaakt van de Docker-containers en niet van de lokale databases: 
+      mongoDB: 
+      ![image](https://user-images.githubusercontent.com/91833234/143298771-268ef430-5f10-48f0-b400-b7c4cb6f53d5.png)      
+      Redis: 
+      ![image](https://user-images.githubusercontent.com/91833234/143299057-a88ea4ba-929a-458d-a06a-69b58bd1c585.png)
+
+* Resultaat: 
+      Scraper: 
+      ![image](https://user-images.githubusercontent.com/91833234/143299217-64e4301c-3209-4f08-a03d-6e87b07f25a8.png)
+      mongoDB:       
+      ![image](https://user-images.githubusercontent.com/91833234/143299419-8c20bd9b-08f5-42fb-9e85-8728f953b762.png)      
+      ![image](https://user-images.githubusercontent.com/91833234/143299793-bde642ea-32ea-454d-8c2f-d8a43c9ba815.png)
+
+      
+
+      
+     
+
+
+
+   
+  
+
+
+
 
