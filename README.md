@@ -94,22 +94,18 @@ Mijn scraper bestaat 4 (hulp)-functie en één hoofdfunctie. Elke minuut wordt d
 
 * Aanpassen van script zodat er wordt gebruik gemaakt van de Docker-containers en niet van de lokale databases: 
       
-      mongoDB: 
-         ![image](https://user-images.githubusercontent.com/91833234/143298771-268ef430-5f10-48f0-b400-b7c4cb6f53d5.png) 
+      mongoDB: ![image](https://user-images.githubusercontent.com/91833234/143298771-268ef430-5f10-48f0-b400-b7c4cb6f53d5.png) 
    
       
       
       
-      Redis: 
-      
-      ![image](https://user-images.githubusercontent.com/91833234/143299057-a88ea4ba-929a-458d-a06a-69b58bd1c585.png)
+      Redis: ![image](https://user-images.githubusercontent.com/91833234/143299057-a88ea4ba-929a-458d-a06a-69b58bd1c585.png) 
 
 * Resultaat: 
       
-      Scraper:      
-      ![image](https://user-images.githubusercontent.com/91833234/143299217-64e4301c-3209-4f08-a03d-6e87b07f25a8.png)
+      Scraper:![image](https://user-images.githubusercontent.com/91833234/143299217-64e4301c-3209-4f08-a03d-6e87b07f25a8.png)
       
-      mongoDB:       
+      mongoDB:      
       ![image](https://user-images.githubusercontent.com/91833234/143299419-8c20bd9b-08f5-42fb-9e85-8728f953b762.png)      
       ![image](https://user-images.githubusercontent.com/91833234/143299793-bde642ea-32ea-454d-8c2f-d8a43c9ba815.png)
 
