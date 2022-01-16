@@ -1,6 +1,6 @@
 # DatabasesAdvanced
 
-Opdracht 1
+## Opdracht 1
 
 Voorbereiding
 
@@ -33,7 +33,7 @@ Mijn scraper bestaat 4 (hulp)-functie en één hoofdfunctie. Elke minuut wordt d
 
 ![image](https://user-images.githubusercontent.com/91833234/135995096-170cb1af-143b-4ec7-a1ba-6797f32efdbb.png)
 
-Opdracht 2 
+## Opdracht 2 
 
 * Installeren van mongoDB op Linux
   Commands: 
@@ -54,7 +54,7 @@ Opdracht 2
   * Aanmaken van timer-script om elke minuut de website te scrapen: 
      ![image](https://user-images.githubusercontent.com/91833234/137693895-c8ef2f4c-2b03-437b-b5e1-4bc5d091e05b.png)
 
-Opdracht 3
+## Opdracht 3
 
 * Installeren van Redis op Linux
   Commands: 
@@ -76,7 +76,7 @@ Opdracht 3
 
   ![image](https://user-images.githubusercontent.com/91833234/141133369-f9076062-6347-4103-a3b2-e7ed6bdc203d.png)
 
-Opdracht 4
+## Opdracht 4
 
 * Installeren van Docker op Ubuntu: https://docs.docker.com/engine/install/ubuntu/ 
 
