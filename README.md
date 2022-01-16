@@ -93,9 +93,12 @@ Mijn scraper bestaat 4 (hulp)-functie en één hoofdfunctie. Elke minuut wordt d
         * docker run --name redisdb5 -d -p 6379:6379 redis
 
 * Aanpassen van script zodat er wordt gebruik gemaakt van de Docker-containers en niet van de lokale databases: 
-      mongoDB: 
       
-      ![image](https://user-images.githubusercontent.com/91833234/143298771-268ef430-5f10-48f0-b400-b7c4cb6f53d5.png) 
+      mongoDB: 
+         ![image](https://user-images.githubusercontent.com/91833234/143298771-268ef430-5f10-48f0-b400-b7c4cb6f53d5.png) 
+   
+      
+      
       
       Redis: 
       
