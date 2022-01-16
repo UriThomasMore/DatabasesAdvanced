@@ -50,7 +50,9 @@ Mijn scraper bestaat 4 (hulp)-functie en één hoofdfunctie. Elke minuut wordt d
     ![image](https://user-images.githubusercontent.com/91833234/137693668-3d8dd5a9-d8d9-45b8-847e-1df106445434.png)
 
    Dit is het resultaat: 
+   
    ![image](https://user-images.githubusercontent.com/91833234/137693544-1bd041da-d10d-48ea-bda0-10907f08a446.png)
+   
   * Aanmaken van timer-script om elke minuut de website te scrapen: 
      ![image](https://user-images.githubusercontent.com/91833234/137693895-c8ef2f4c-2b03-437b-b5e1-4bc5d091e05b.png)
 
