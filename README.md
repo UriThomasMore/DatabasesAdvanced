@@ -2,27 +2,28 @@
 
 ## Opdracht 1
 
-Voorbereiding
+* Voorbereiding
 
-  ◦ Install Python
+  * Install Python
 
-  ◦ Install Linux – Xubuntu
-      ▪ Adjust Linux settings : Language
+  * Install Linux – Xubuntu:
+     
+    * Adjust Linux settings : Language
 
-  ◦ Download Anaconda : https://linuxize.com/post/how-to-install-anaconda-on-ubuntu-20-04/ 
+  * Download Anaconda : https://linuxize.com/post/how-to-install-anaconda-on-ubuntu-20-04/ 
 
-  ◦ Install VSCode
+  * Install VSCode
 
-  ◦ Start Anaconda: 
+  * Start Anaconda: 
 
-      ▪ $ source ~/anaconda3/bin/activate root
-      ▪ $ anaconda-navigator
+      * $ source ~/anaconda3/bin/activate root
+      * $ anaconda-navigator
 
-  ◦ Create Folder Databases
+  * Create Folder Databases
 
-  ◦ Start Project in Visual code:
+  * Start Project in Visual code:
   
-      ▪ Download BeautifulSoup : pip install beautifulsoup4 
+      * Download BeautifulSoup : pip install beautifulsoup4 
 
 * Scraper
 
@@ -35,7 +36,7 @@ Mijn scraper bestaat 4 (hulp)-functie en één hoofdfunctie. Elke minuut wordt d
 
 ## Opdracht 2 
 
-- Installeren van mongoDB op Linux
+* Installeren van mongoDB op Linux
   
   * Commands: 
     * wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
